@@ -19,15 +19,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-
-Route::get('hola', function(){
-    return 'carebola';
-});
-
-Route::get('usuario/{nombre}', function($nombre){
-    return 'Usuario '.$nombre;
-});
-
-Route::get('user/{nombre?}', function($nombre='Anon'){
-    return 'Usuario '.$nombre;
-})->where('nombre', '[A-z]+');
+Route::resource('producto', ProductController);

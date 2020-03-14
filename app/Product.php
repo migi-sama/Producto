@@ -10,5 +10,5 @@ class Product extends Model
         'nombreProducto',
         'codigoProducto',
         'descripcionProducto',
-    ]
+    ];
 }
