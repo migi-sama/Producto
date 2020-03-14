@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Product;
 use Illuminate\Http\Request;
+use Redirect;
 
 class ProductController extends Controller
 {
@@ -13,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data['productos'] = Product::orderBy('id','desc')->paginate(2);
+        $data['productos'] = Product::orderBy('idProducts','asc')->paginate(4);
         return view('producto.list',$data);
     }
 
@@ -24,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('producto.create');
     }
 
     /**
@@ -35,8 +37,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombreProducto' => 'required',
+            'codigoProducto' => 'required',
+            'descripcionProducto' => 'required',
+        ]);
+
+        Product::create($request->all());
+
+        return Redirect::to('producto')
+        ->with('success','Producto creado satisfactoriamente.');
     }
+
 
     /**
      * Display the specified resource.

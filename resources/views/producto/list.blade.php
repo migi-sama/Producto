@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenido')
-  <a href="#" class="btn btn-success mb-2">Agregar</a> 
+  <a href="{{route ('producto.create')}}" class="btn btn-success mb-2">Agregar</a> 
   <br>
    <div class="row">
         <div class="col-12">
@@ -24,7 +24,7 @@
            <tbody>
               @foreach($productos as $producto)
               <tr>
-              <td>{{ $producto->id }}</td>
+              <td>{{ $producto->idProducts }}</td>
                  <td>{{ $producto->nombreProducto }}</td>
                  <td>{{ $producto->codigoProducto }}</td>
                  <td>{{ $producto->descripcionProducto }}</td>
