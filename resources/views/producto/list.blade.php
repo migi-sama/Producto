@@ -29,7 +29,7 @@
                  <td>{{ $producto->codigoProducto }}</td>
                  <td>{{ $producto->descripcionProducto }}</td>
                  <td>{{ date('Y-m-d', strtotime($producto->created_at)) }}</td>
-                 <td><a href="#" class="btn btn-primary">Editar</a></td>
+                 <td><a href="{{route('producto.edit',$producto->idProducts)}}" class="btn btn-primary">Editar</a></td>
                  <td>
                  <form action="#" method="post">
                   

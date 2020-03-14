@@ -53,10 +53,10 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idProducts
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($idProducts)
     {
         //
     }
@@ -64,33 +64,47 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idProducts
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($idProducts)
     {
-        //
+        $where = array('idProducts' => $idProducts);
+        $data['product_info'] = Product::where($where)->first();
+     
+        return view('producto.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $idProducts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $idProducts)
     {
-        //
+        $request->validate([
+            'nombreProducto' => 'required',
+            'codigoProducto' => 'required',
+            'descripcionProducto' => 'required',
+        ]);
+         
+        $update = ['nombreProducto' => $request->nombreProducto, 'descripcionProducto' => $request->descripcionProducto];
+        Product::where('idProducts',$idProducts)->update($update);
+   
+        return Redirect::to('producto')
+       ->with('success','Produto actualizado satisfactoriamente');
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $idProducts
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($idProducts)
     {
         //
     }
