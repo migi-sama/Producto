@@ -104,8 +104,11 @@ class ProductController extends Controller
      * @param  int  $idProducts
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($idProducts)
     {
-        //
+        Product::where('idProducts',$idProducts)->delete();
+        return Redirect::to('producto')->with('success','Producto eliminado satisfactoriamente');
+    
     }
 }

@@ -24,17 +24,18 @@
            <tbody>
               @foreach($productos as $producto)
               <tr>
-              <td>{{ $producto->idProducts }}</td>
-                 <td>{{ $producto->nombreProducto }}</td>
-                 <td>{{ $producto->codigoProducto }}</td>
-                 <td>{{ $producto->descripcionProducto }}</td>
-                 <td>{{ date('Y-m-d', strtotime($producto->created_at)) }}</td>
-                 <td><a href="{{route('producto.edit',$producto->idProducts)}}" class="btn btn-primary">Editar</a></td>
-                 <td>
-                 <form action="#" method="post">
-                  
-                  <button class="btn btn-danger" type="submit">Eliminar</button>
-                </form>
+                <td>{{ $producto->idProducts }}</td>
+                <td>{{ $producto->nombreProducto }}</td>
+                <td>{{ $producto->codigoProducto }}</td>
+                <td>{{ $producto->descripcionProducto }}</td>
+                <td>{{ date('Y-m-d', strtotime($producto->created_at)) }}</td>
+                <td><a href="{{route('producto.edit',$producto->idProducts)}}" class="btn btn-primary">Editar</a></td>
+                <td>
+                 <form action="{{ route('producto.destroy',$producto->idProducts) }}" method="post">
+                    {{ csrf_field() }}
+                    @method('DELETE')
+                 <button class="btn btn-danger" type="submit">Eliminar</button>
+                 </form>
                 </td>
               </tr>
               @endforeach
